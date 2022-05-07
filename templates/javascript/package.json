@@ -1,0 +1,19 @@
+{
+    "name": "javascript",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Manas-Nanivadekar",
+    "license": "MIT",
+    "scripts": {
+        "format:check": "prettier --check .",
+        "format:write": "prettier --write .",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint --fix ."
+    },
+    "dependencies": {
+        "express": "^4.15.2"
+    },
+    "devDependencies": {
+        "eslint": "^8.15.0"
+    }
+}

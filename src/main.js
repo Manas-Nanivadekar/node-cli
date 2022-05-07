@@ -1,8 +1,8 @@
+const colors = require("colors");
 import fs from "fs";
 import ncp from "ncp";
 import path from "path";
 import { promisify } from "util";
-// import execa from "execa";
 import Listr from "listr";
 import { projectInstall } from "pkg-install";
 
@@ -14,16 +14,6 @@ async function copyTemplateFiles(options) {
     clobber: false,
   });
 }
-
-// async function initGit(options) {
-//   const result = await execa("git", ["init"], {
-//     cwd: options.targetDirectory,
-//   });
-//   if (result.failed) {
-//     return Promise.reject(new Error("Failed to initialize git"));
-//   }
-//   return;
-// }
 
 export async function createProject(options) {
   options = {
@@ -42,7 +32,7 @@ export async function createProject(options) {
   try {
     await access(templateDir, fs.constants.R_OK);
   } catch (err) {
-    console.error(err.message);
+    console.error(err.red);
     process.exit(1);
   }
 
@@ -69,6 +59,6 @@ export async function createProject(options) {
 
   await tasks.run();
 
-  console.log("%s Project ready", "DONE");
+  console.log("%s Project ready", "DONE".green);
   return true;
 }

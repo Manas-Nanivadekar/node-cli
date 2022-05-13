@@ -16,9 +16,11 @@ async function copyTemplateFiles(options) {
 }
 
 export async function createProject(options) {
+  let dir = process.cwd() + "/" + options.targetDirectory;
+
   options = {
     ...options,
-    targetDirectory: options.targetDirectory || process.cwd(),
+    targetDirectory: dir || process.cwd(),
   };
 
   const currentFileUrl = import.meta.url;
@@ -37,6 +39,7 @@ export async function createProject(options) {
   }
 
   console.log("Copy project files");
+  console.log(dir);
   await copyTemplateFiles(options);
 
   const tasks = new Listr([

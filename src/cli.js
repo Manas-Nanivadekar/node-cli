@@ -48,6 +48,15 @@ async function promptForMissingOptions(options) {
     });
   }
 
+  if (!options.targetDirectory) {
+    questions.push({
+      type: "input",
+      name: "targetDirectory",
+      message: "Name of the project",
+      default: "my-project",
+    });
+  }
+
   if (!options.packageManager) {
     questions.push({
       type: "list",
@@ -64,6 +73,7 @@ async function promptForMissingOptions(options) {
     template: options.template || answers.template,
     git: options.git || answers.git,
     packageManager: options.packageManager || answers.packageManager,
+    targetDirectory: options.targetDirectory || answers.targetDirectory,
   };
 }
 

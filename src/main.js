@@ -49,6 +49,7 @@ export async function createProject(options) {
       task: () =>
         projectInstall({
           cwd: options.targetDirectory,
+          prefer: options.packageManager,
         }),
       skip: () =>
         !options.runInstall

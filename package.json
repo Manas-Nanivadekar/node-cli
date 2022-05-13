@@ -1,6 +1,6 @@
 {
   "name": "create-mn-node-app",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "src/main.js",
   "description": "A CLI to bootstrap my nodejs project",
   "bin": {

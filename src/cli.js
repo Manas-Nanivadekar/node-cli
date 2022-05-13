@@ -8,7 +8,9 @@ function parseArgumentsIntoOptions(rawArgs) {
       "--git": Boolean,
       "--yes": Boolean,
       "--install": Boolean,
+      "--npm": Boolean,
       "-g": "--git",
+      "-n": "--npm",
       "-y": "--yes",
       "-i": "--install",
     },
@@ -26,6 +28,8 @@ function parseArgumentsIntoOptions(rawArgs) {
 
 async function promptForMissingOptions(options) {
   const defaultTemplate = "TypeScript";
+  const defaultPackageManager = "yarn";
+
   if (options.skipPrompts) {
     return {
       ...options,
@@ -44,11 +48,22 @@ async function promptForMissingOptions(options) {
     });
   }
 
+  if (!options.packageManager) {
+    questions.push({
+      type: "list",
+      name: "packageManager",
+      message: "Please choose which package manager to use",
+      choices: ["npm", "yarn"],
+      default: defaultPackageManager,
+    });
+  }
+
   const answers = await inquirer.prompt(questions);
   return {
     ...options,
     template: options.template || answers.template,
     git: options.git || answers.git,
+    packageManager: options.packageManager || answers.packageManager,
   };
 }
 
